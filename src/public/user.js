@@ -2,22 +2,28 @@
 
 function llamarApi() {
     console.log("llamando Api User");
+    console.log("Llamando a la API para el usuario con ID:", {userId});
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+        console.error("El token de autorización no está presente.");
+        return;
+    }
 
-    fetch('api/users/65b6b7c5caf2da3f3f21dd02', {
+    fetch(`api/users/${userId}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json', // Corregido 'aplication' a 'application'
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
         }
     }).then(result => {
         if (result.status === 200) {
-            return result.json(); // Devolver el resultado JSON
+            return result.json();
         } else if (result.status === 401) {
             console.log(result);
             alert("Login Invalido Revisa tus Credenciales");
-            throw new Error("Unauthorized"); // Agregar una excepción en caso de error de autorización
+            throw new Error("Unauthorized");
         } else {
-            throw new Error("Error en la solicitud"); // Manejar otros códigos de estado
+            throw new Error("Error en la solicitud. Código de estado: " + result.status);
         }
     }).then(json => {
         console.log(json);
@@ -25,6 +31,7 @@ function llamarApi() {
         console.error(error.message);
     });
 }
+
 
 
 

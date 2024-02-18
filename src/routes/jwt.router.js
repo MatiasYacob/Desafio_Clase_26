@@ -1,10 +1,9 @@
 import { Router } from "express";
 import JwtController from "../controllers/JwtController.js";
 
-const router = Router();
+const jwtRouter = Router();
 
-// Endpoint POST para iniciar sesión
-router.use("/auth", JwtController);
+// Ruta para el inicio de sesión (POST /login)
+jwtRouter.post("/login", JwtController);
 
-// Exportar el router
-export default router;
+export default jwtRouter;

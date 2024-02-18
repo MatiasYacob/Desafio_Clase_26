@@ -59,6 +59,7 @@ app.use(
     secret: 'tu_secreto_aqui',
     resave: true,
     saveUninitialized: true,
+    
   })
 );
 

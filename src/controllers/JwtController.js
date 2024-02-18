@@ -29,8 +29,8 @@ jwtRouter.post("/login", async (req, res) => {
 
         // Opciones para configurar la cookie
         const cookieOptions = {
-            maxAge: 60000, // Duración de la cookie en milisegundos (60 segundos en este caso)
-            // httpOnly: true // Comentar o descomentar según tus necesidades
+            maxAge: 24 * 60 * 60 * 1000, // Duración de la cookie en milisegundos (1 día)
+            
         };
 
         // Configuración de la cookie con nombre 'jwtCookieToken'
